@@ -138,5 +138,13 @@
   align-items: center;       /* vertical center */
   justify-content: center;   /* horizontal center */
   background: #f9fafb;       /* light gray background */
+  background: var(--bg);
+  /* If you have a 2x image, you can use image-set:
+     background-image: image-set(url('../images/bg.png') 1x, url('../images/bg@2x.png') 2x); */
+  background-image: url('../images/bg.png');
+  background-size: cover;       /* fills any monitor size */
+  background-position: center;  /* stays centered on ultra-wide */
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* change to 'fixed' if you want parallax feel */
   padding: 20px;
 }
