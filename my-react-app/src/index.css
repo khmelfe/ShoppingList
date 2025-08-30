@@ -1,16 +1,18 @@
-body {
+:root {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--text);
   background: var(--bg);
-  /* If you have a 2x image, you can use image-set:
-     background-image: image-set(url('../images/bg.png') 1x, url('../images/bg@2x.png') 2x); */
-  background-image: url('./images/bg.png');
-  background-size: cover;       /* fills any monitor size */
-  background-position: center;  /* stays centered on ultra-wide */
+
+  /* Background image — use from /public if possible */
+  background-image: url("../public/images/bg.png");
+
+  background-size: cover;        /* stretch nicely to any monitor */
+  background-position: center;   /* centered on wide/ultra-wide */
   background-repeat: no-repeat;
-  background-attachment: scroll; /* change to 'fixed' if you want parallax feel */
+  background-attachment: fixed;  /* optional: parallax feel */
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
