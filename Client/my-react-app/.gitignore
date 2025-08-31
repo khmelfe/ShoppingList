@@ -6,6 +6,7 @@
 .pnp.js
 
 #Server side
+ShoppingList/*.env
 Server/finally.env
 # testing
 /coverage
