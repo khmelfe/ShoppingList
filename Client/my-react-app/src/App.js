@@ -1,11 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./features/auth/pages/Login";
 import SignUp from "./features/auth/pages/SignUp";
-import ForgotPassword from "./Pages/ForgotPassword";
+import ForgotPassword from "./features/auth/pages/ForgotPassword";
 import "./styles/global.css";
 import Dashboard from "./features/dashboard/pages/Dashboard";
 
-import Test_Backend from "./Pages/Test_Backend"
 
 
 export default function App() {

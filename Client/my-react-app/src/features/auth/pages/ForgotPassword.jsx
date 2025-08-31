@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import AuthCard from "../components/AuthCard";
-import FormField from "../components/FormField";
-import Button from "../components/Button";
-import GoogleButton from "../components/GoogleButton";
+import AuthCard from "../../../components/AuthCard";
+import FormField from "../../../components/FormField";
+import Button from "../../../components/Button";
+import GoogleButton from "../../../components/GoogleButton";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
