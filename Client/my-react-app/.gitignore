@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+#Server side
+well.env
+
 # testing
 /coverage
 
