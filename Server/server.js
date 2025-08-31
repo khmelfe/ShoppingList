@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "well2.env" });
+require("dotenv").config({ path: "finally.env" });
 const mongoose = require("mongoose")
 
 const express = require('express')

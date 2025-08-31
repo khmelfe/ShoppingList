@@ -6,8 +6,7 @@
 .pnp.js
 
 #Server side
-well.env
-
+Server/finally.env
 # testing
 /coverage
 
