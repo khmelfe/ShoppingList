@@ -1,0 +1,9 @@
+.cartlist {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  padding: 18px;
+}
+.cartlist__row { display:grid; grid-template-columns: 1fr 80px 100px; padding:10px 0; border-bottom:1px solid #eee; }
+.cartlist__row:last-child { border-bottom:0; }

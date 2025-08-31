@@ -1,0 +1,26 @@
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  padding: 16px 18px;
+}
+.stat-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.stat-card__icon {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: #f1f5f9;
+}
+.stat-card__title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+.stat-card__actions { margin-left: auto; display:flex; gap:8px; }
+.stat-card__body { font-size: 14px; color: var(--muted); }
