@@ -1,8 +1,11 @@
-
-
+require("dotenv").config();
+const mongoose = require("mongoose")
 
 const express = require('express')
 const app = express()
+
+const uri = process.env.MONGO_URI;
+
 
 //This const is for reading http request body(json data from POST for example) and make it so can use it here.
 const bodyParser = require("body-parser");
@@ -11,7 +14,7 @@ const { initDb, setUser } = require("./dbcommands");
 
 (async () => {
   try {
-    await initDb("mongodb+srv://admin:admin@cluster0-shoppinglist.fpkt5ya.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0-ShoppingList");
+    await initDb(uri);
     console.log("✅ MongoDB connected");
   } catch (err) {
     console.error("❌ DB connection failed:", err);
@@ -61,6 +64,5 @@ app.post("/new", async (req, res) => {
 
 //server runs on 4000 port . (the reason for 4000 is because on mac 5000 is already taken)
 
-const PORT = 4000;
-app.listen(PORT, () => console.log(`🚀 Server Started on port ${PORT}`));
+app.listen(process.env.PORT, () => console.log(`🚀 Server Started on port ${process.env.PORT}`));
 
