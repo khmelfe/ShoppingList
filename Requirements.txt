@@ -1,4 +1,0 @@
-Node js 
-Node express
-
-node nodemon -D
