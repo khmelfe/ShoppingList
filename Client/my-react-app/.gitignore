@@ -7,7 +7,6 @@
 
 #Server side
 Server/finally.env
-finally.env
 # testing
 /coverage
 

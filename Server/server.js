@@ -21,7 +21,7 @@ const { initDb, setUser } = require("./dbcommands");
     process.exit(1);
   }
 })();
-
+//haw
 
 app.get("/api",(req,res)=> {
     res.json({"users": ["Userone","Usertwo","Userthree"]})
