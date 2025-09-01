@@ -1,0 +1,26 @@
+/* PAGE LAYOUT (global) */
+.dash { display: grid; gap: 18px; }
+
+/* two-column main grid (cards) */
+.dash-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+@media (max-width: 900px) { .dash-grid-2 { grid-template-columns: 1fr; } }
+
+/* optional utils */
+.dash-section { display: grid; gap: 10px; }
+.dash-h3 { margin: 6px 0 0; font-size: 16px; font-weight: 700; }
+.dash-sub { margin: 0; color: var(--muted); font-size: 13px; }
+
+/* STATS GRID placement only (tile styling lives in StatCard module) */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding-top: 100px;
+  margin-bottom: 8px;
+}
+@media (max-width: 1100px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px)  { .stats-grid { grid-template-columns: 1fr; } }

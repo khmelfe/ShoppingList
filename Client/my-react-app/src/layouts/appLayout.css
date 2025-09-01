@@ -1,0 +1,10 @@
+/* src/layouts/app-layout.css */
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;  /* sidebar + content */
+  min-height: max-content;
+}
+.content {
+  background: #f4f6f8;              /* match your dashboard bg */
+  padding: 20px 28px;                /* page padding */
+}

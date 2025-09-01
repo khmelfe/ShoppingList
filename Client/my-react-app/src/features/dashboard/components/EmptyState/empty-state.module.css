@@ -1,0 +1,7 @@
+.empty {
+  margin-top: 8px; padding: 20px 10px; display: grid; place-items: center;
+  text-align: center; color: #475467; gap: 8px; flex: 1;
+}
+.emptyIcon { font-size: 36px; line-height: 1; }
+.emptyMain { font-weight: 700; }
+.emptySub { font-size: 14px; opacity: .9; }

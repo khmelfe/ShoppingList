@@ -1,0 +1,23 @@
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+  padding: 16px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+.card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.card-icon {
+  width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; color: #fff;
+  background: linear-gradient(
+    180deg,
+    #0c5b7c 0%,
+    #0f6a8d 18%,
+    #1c77a0 32%,
+    #2e87b2 52%,
+    #5aa7cf 78%,
+    #86c7f0 100%
+  );
+}
+.card-title { margin: 0; font-size: 18px; font-weight: 700; }

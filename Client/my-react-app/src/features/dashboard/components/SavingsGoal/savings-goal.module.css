@@ -1,0 +1,13 @@
+.stats { display:grid; gap:10px; }
+.nums { display:flex; align-items:baseline; gap:6px; }
+.amount { font-size:28px; font-weight:800; }
+.target { color:#6b7280; }
+
+.progress { height:12px; border-radius:999px; background:#eef2ff; overflow:hidden; }
+.bar { height:100%; border-radius:999px; background:linear-gradient(90deg,#34d399,#10b981,#06b6d4); transition:width .28s ease-in-out; }
+
+.foot { display:flex; align-items:center; justify-content:space-between; }
+.success { display:inline-flex; align-items:center; gap:6px; color:#059669; font-weight:600; }
+.muted { color:#6b7280; }
+.link { color:#2563eb; text-decoration:none; }
+.link:hover { text-decoration:underline; }

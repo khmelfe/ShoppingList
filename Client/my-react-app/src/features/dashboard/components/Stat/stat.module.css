@@ -1,0 +1,30 @@
+.stat {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(16,24,40,0.06);
+  padding: 14px;
+  min-height: 84px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+.icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: grid; place-items: center; color: #fff;
+  background: linear-gradient(180deg,#0c5b7c 0%, #2e87b2 100%);
+}
+.title { margin: 0; font-size: 13px; color: var(--muted); }
+.value { margin: 2px 0 0; font-size: 22px; font-weight: 800; }
+.extra {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #155e36;
+  background: rgba(22,163,74,.12);
+}
+.negative {
+  color: #7a271a;
+  background: rgba(234,88,12,.14);
+}
