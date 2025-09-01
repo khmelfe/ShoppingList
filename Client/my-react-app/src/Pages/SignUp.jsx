@@ -1,13 +1,13 @@
 // src/features/auth/pages/SignUp.jsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
-import AuthCard from "../../../../components/AuthCard/AuthCard";
-import FormField from "../../../../components/FormField/FormField";
-import PasswordInput from "../../../../components/PasswordInput/PasswordInput";
-import LocationInput from "../../components/LocationInput";
-import Button from "../../../../components/Button/Button";
-import GoogleButton from "../../../../components/GoogleButton/GoogleButton";
+import AuthCard from "../../../components/AuthCard";
+import FormField from "../../../components/FormField";
+import PasswordInput from "../../../components/PasswordInput";
+import LocationInput from "../components/LocationInput";
+import Button from "../../../components/Button";
+import GoogleButton from "../../../components/GoogleButton";
 
 export default function SignUp() {
   const [form, setForm] = useState({
@@ -22,9 +22,11 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
 
   // validation rules
-  const usernameRe = /^[A-Za-z]{8,16}$/;                      // 8–16 letters
-  const emailRe = /^\S+@\S+\.\S+$/;                           // basic email
+  const usernameRe = /^[A-Za-z]{8,16}$/; // 8–16 letters
+  const emailRe = /^\S+@\S+\.\S+$/; // basic email
   const passwordRe = /^(?=.*[A-Z])(?=.*[@!?])[A-Za-z0-9@!?]{8,16}$/; // 8–16, 1 upper, 1 special
+
+
 
   const validate = () => {
     const e = {};
@@ -49,15 +51,14 @@ export default function SignUp() {
     if (!validate()) return;
     setLoading(true);
     try {
-      
-      const res = await fetch("/new_user", {
+      console.log("hello")
+      const res =  fetch("/new_user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify(form),
       });
       if (!res.ok) throw new Error("Registration failed");
-      else {alert("Registration is Succesfull!")}
       window.location.href = "/login";
     } catch (e) {
       setErr({ api: e.message });
@@ -81,7 +82,9 @@ export default function SignUp() {
             name="username"
             placeholder="Enter a username"
             value={form.username}
-            onChange={(e) => setForm((f) => ({ ...f, username: e.target.value }))}
+            onChange={(e) =>
+              setForm((f) => ({ ...f, username: e.target.value }))
+            }
             aria-invalid={!!err.username}
             autoComplete="username"
           />
@@ -94,7 +97,9 @@ export default function SignUp() {
             type="email"
             placeholder="you@example.com"
             value={form.email}
-            onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+            onChange={(e) =>
+              setForm((f) => ({ ...f, email: e.target.value }))
+            }
             aria-invalid={!!err.email}
             autoComplete="email"
           />
@@ -105,7 +110,9 @@ export default function SignUp() {
             id="pw"
             name="password"
             value={form.password}
-            onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
+            onChange={(e) =>
+              setForm((f) => ({ ...f, password: e.target.value }))
+            }
             placeholder="Choose a strong password"
             autoComplete="new-password"
             aria-invalid={!!err.password}
@@ -125,12 +132,12 @@ export default function SignUp() {
           />
         </FormField>
 
-        <Button variant="primary" fullWidth type="submit" loading={loading} disabled={loading}>
+        <Button variant="primary" fullWidth type="submit"  loading={loading} disabled={loading}>
           Sign Up
         </Button>
       </form>
 
-      <GoogleButton onClick={() => (window.location.href = "https://accounts.google.com/")} />
+      <GoogleButton onClick={() => (window.location.href = "https://myaccount.google.com/")} />
 
       <div className="split">
         <a href="/login">Already have an account? Login</a>
