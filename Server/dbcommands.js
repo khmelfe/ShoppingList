@@ -1,8 +1,5 @@
 const { MongoClient } = require("mongodb");
 
-
-
-
 let client ; 
 let db;
 
@@ -19,18 +16,27 @@ function toInt(x) {
   return isNaN(n) ? x : n;
 }
 
-async function setUser(user_id, user_name, user_email, user_password) {
-  if (!db) throw new Error("DB not initialized. Call initDb first.");
-  const users = db.collection("Users");
 
+function get_id(){
+  return result  = users.countDocuments()
+  
+}
+
+async function setUser( user_name, user_email, user_password) {
+  if (!db) throw new Error("DB not initialized. Call initDb first.");
+  users_db = db.collection("Users");
+  const count = await users_db.countDocuments({});
+  const id = count + 1;   // simple auto-increment
+
+  console.log("well ",id)
   const newUser = {
-    _id: toInt(user_id),
+    _id: id,
     name: user_name,
     email: user_email,
     password: user_password,
   };
   console.log("YES!")
-  const result = await users.insertOne(newUser);
+  const result = await users_db.insertOne(newUser);
   return result.insertedId;
 }
 
