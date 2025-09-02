@@ -4,9 +4,7 @@ import { NavLink } from "react-router-dom";
 import items from "./items";
 import styles from "./sidebar.module.css";
 
-import Products from "../../features/dashboard/pages/Products/Products";
 import LogoutIcon from "@mui/icons-material/Logout";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import InfoIcon from "@mui/icons-material/Info";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 

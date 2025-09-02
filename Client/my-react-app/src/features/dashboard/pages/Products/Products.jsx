@@ -20,7 +20,7 @@ function createProduct(name, brand, category, store, price, barcode, image, hist
     history,   // [{date:'YYYY-MM-DD', store:'Name', price:number}]
   };
 }
-
+// change to db Later for real app
 const PRODUCTS = [
   createProduct(
     "Milk 1L", "Tara", "Dairy", "Super-Sal Dizengoff", 5.9, "7290000010013",
