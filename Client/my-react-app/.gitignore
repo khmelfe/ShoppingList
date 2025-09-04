@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+node_modules/
+**/node_modules/
+
+
+
+
 #Server side
 ShoppingList/*.env
 Server/finally.env
@@ -25,3 +31,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
+Server/node_modules/
+
+node_modules/
+**/node_modules/

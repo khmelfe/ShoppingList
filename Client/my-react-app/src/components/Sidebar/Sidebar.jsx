@@ -7,8 +7,23 @@ import styles from "./sidebar.module.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 import InfoIcon from "@mui/icons-material/Info";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import { useEffect } from "react";
 
 export default function Sidebar() {
+
+  const onSubmit = async (ev) =>{
+     const res = await fetch("http://localhost:4000/logout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      console.log(res)
+      if (!res.ok) throw new Error("Login failed");
+      window.location.href = "/";
+    }
+
+  
+
   return (
     <aside className={styles.aside} aria-label="Primary">
       <div className={styles.top}>
@@ -50,7 +65,7 @@ export default function Sidebar() {
 
         {/* Logout (separated below) */}
         <div className={styles.bottomGroup}>
-          <NavLink to="/login" className={styles.bottomItem}>
+          <NavLink to="/login" onClick={onSubmit} className={styles.bottomItem}>
             <LogoutIcon className={styles.bottomIcon} />
             <span>Logout</span>
           </NavLink>

@@ -22,7 +22,7 @@ function get_id(){
   
 }
 
-async function setUser( user_name, user_email, user_password) {
+async function setUser( user_name, user_email, user_password,location) {
   if (!db) throw new Error("DB not initialized. Call initDb first.");
   users_db = db.collection("Users");
   const count = await users_db.countDocuments({});
@@ -34,10 +34,35 @@ async function setUser( user_name, user_email, user_password) {
     name: user_name,
     email: user_email,
     password: user_password,
+    location : location
   };
   console.log("YES!")
   const result = await users_db.insertOne(newUser);
   return result.insertedId;
 }
 
-module.exports = { initDb, setUser };
+function checkusecheckuser_username(user_name,user_password) {
+    if(!db) throw new Error("DB not initialized.Call initDb first");
+    user_db = db.collection("Users");
+    user = user_db.findOne({"name":user_name,"password":user_password});
+    if (user != null)
+      return user
+    else
+       throw new Error("User Not Found\n") 
+
+
+}
+
+function checkuser_email(email,user_password) {
+    if(!db) throw new Error("DB not initialized.Call initDb first");
+    user_db = db.collection("Users");
+    user = user_db.findOne({"email":email,"password":user_password});
+    if (user != null)
+      return user
+    else
+       throw new Error("User Not Found\n") 
+
+
+}
+
+module.exports = { initDb, setUser,checkuser_email,checkusecheckuser_username };

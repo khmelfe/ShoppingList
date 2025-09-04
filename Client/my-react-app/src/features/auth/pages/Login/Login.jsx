@@ -49,12 +49,13 @@ export default function Login() {
           ? { email: form.email, password: form.password }
           : { username: form.username, password: form.password };
 
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch("http://localhost:4000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify(payload),
       });
+      console.log(res)
       if (!res.ok) throw new Error("Login failed");
       window.location.href = "/";
     } catch (e) {
