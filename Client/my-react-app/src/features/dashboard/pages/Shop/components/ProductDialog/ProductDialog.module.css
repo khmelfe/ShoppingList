@@ -1,0 +1,29 @@
+.dialogTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dialogTitleText { flex: 1; font-weight: 800; }
+
+.dialogClose { margin-left: auto; }
+
+.dialogHeroImage {
+  width: 100%;
+  padding-top: 40%;
+  background: #f7f7f8;
+  border: 1px dashed rgba(0,0,0,.15);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: rgba(0,0,0,.38);
+  margin-bottom: 16px;
+}
+
+.nutritionTable {
+  max-width: 420px;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 6px;
+}
+
+.dialogActions { gap: 8px; }

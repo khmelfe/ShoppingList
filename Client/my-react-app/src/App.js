@@ -10,7 +10,7 @@ import ForgotPassword from "./features/auth/pages/ForgotPassword/ForgotPassword"
 import Dashboard from "./features/dashboard/pages/Dashboard/Dashboard";
 import Products from "./features/dashboard/pages/Products/Products";
 import Orders from "./features/dashboard/pages/MyOrders/Orders";
-
+import Shop from "./features/dashboard/pages/Shop/Shop";
 
 // Layout that renders the fixed Sidebar + <Outlet />
 import AppLayout from "./layouts/AppLayout";
@@ -32,7 +32,7 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
 
           {/* Sidebar-linked routes (placeholders for now) */}
-          <Route path="/shop" element={<div style={box}>Create Cart</div>} />
+          <Route path="/shop" element={<Shop />} />
           <Route path="/compare" element={<div style={box}>Compare Prices</div>} />
           <Route path="/favorites" element={<div style={box}>Favorites</div>} />
           <Route path="/orders" element={<Orders />} />

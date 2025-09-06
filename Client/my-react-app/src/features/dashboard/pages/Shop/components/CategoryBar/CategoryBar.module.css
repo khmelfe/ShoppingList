@@ -1,0 +1,46 @@
+.categoryBar {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(110px, 1fr);
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 6px 8px 6px;
+  scroll-snap-type: x mandatory;
+}
+
+.categoryCard {
+  scroll-snap-align: start;
+  border-radius: 8px;
+  padding: 10px;
+  height: 72px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-items: center;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+.categoryCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.1);
+  filter: saturate(1.08);
+}
+
+.active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.12);
+}
+
+.categoryIcon {
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.15));
+}
+
+.categoryLabel {
+  line-height: 1.1;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+  user-select: none;
+}
