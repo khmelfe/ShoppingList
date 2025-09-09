@@ -9,10 +9,10 @@ import PersonIcon from "@mui/icons-material/Person";
 
 export default [
   { title: "Dashboard",   href: "/dashboard", icon: DashboardIcon },
-  { title: "Shop & Save", href: "/shop",      icon: ShoppingCartIcon },
-  { title: "Compare",     href: "/compare",   icon: CompareIcon },
-  { title: "Favorites",   href: "/favorites", icon: FavoriteIcon },
-  { title: "My Orders",   href: "/orders",    icon: ReceiptLongIcon },
-  { title: "Products",    href: "/products",  icon: StorefrontIcon },
-  { title: "My Account",  href: "/account",   icon: PersonIcon },
+  { title: "Shop & Save", href: "/dashboard/shop",      icon: ShoppingCartIcon },
+  { title: "Compare",     href: "/dashboard/compare",   icon: CompareIcon },
+  { title: "Favorites",   href: "/dashboard/favorites", icon: FavoriteIcon },
+  { title: "My Orders",   href: "/dashboard/orders",    icon: ReceiptLongIcon },
+  { title: "Products",    href: "/dashboard/products",  icon: StorefrontIcon },
+  { title: "My Account",  href: "/dashboard/account",   icon: PersonIcon },
 ];

@@ -6,17 +6,14 @@ import {
   Drawer,
   Fab,
   Grid,
-  InputAdornment,
   MenuItem,
   Paper,
   Select,
   Stack,
-  TextField,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import CategoryBar from "./components/CategoryBar/CategoryBar";
@@ -27,6 +24,7 @@ import AnimatedSearchBar from "./components/AnimatedSearchBar/AnimatedSearchBar"
 
 import useProducts from "./components/hooks/useProducts";
 import useCart from "./components/hooks/useCart";
+import usePendingFavoriteCart from "./components/hooks/usePendingFavoriteCart"; // ← NEW
 
 import styles from "./Shop.module.css";
 
@@ -57,6 +55,11 @@ export default function Shop() {
 
   // ——— Cart
   const { cart, add, inc, dec, removeItem, clear } = useCart();
+
+  // >>> Load pending Favorite (one-shot) <<<
+  // Default behavior: replace the current cart. Change modeDefault to "append" if you prefer.
+  usePendingFavoriteCart({ add, clear, modeDefault: "replace" }); // ← NEW
+
   const [selected, setSelected] = useState(null);
   const [cartOpen, setCartOpen] = useState(false);
   const itemCount = cart.reduce((s, it) => s + it.qty, 0);
@@ -73,7 +76,7 @@ export default function Shop() {
           {/* MAIN: full width on mdDown; 10/12 on lg+ */}
           <Grid item xs={12} lg={10}>
             <Paper elevation={1} className={styles.panel}>
-             {/* ===== Header ===== */}
+              {/* ===== Header ===== */}
               <div className={styles.header}>
                 {/* Left: Title + subtitle */}
                 <div className={styles.headerHero}>
@@ -84,30 +87,29 @@ export default function Shop() {
                 </div>
 
                 {/* Right: Controls (search + sort) */}
-               <div className={styles.headerControls}>
-                <div className={styles.searchWrap}>
-                  <AnimatedSearchBar
-                    value={query}
-                    onChange={(val) => setQuery(val)}
-                    onSubmit={() => {/* optional: run filter now */}}
-                    placeholder="חפש מוצרים…"
-                    accentColor="#1976d2"   // or tweak to match your palette
-                  />
-                </div>
+                <div className={styles.headerControls}>
+                  <div className={styles.searchWrap}>
+                    <AnimatedSearchBar
+                      value={query}
+                      onChange={(val) => setQuery(val)}
+                      onSubmit={() => {/* optional: run filter now */}}
+                      placeholder="חפש מוצרים…"
+                      accentColor="#1976d2"
+                    />
+                  </div>
 
-                <div className={styles.sortWrap}>
-                  <Select
-                    size="small"
-                    value={sort}
-                    onChange={(e) => setSort(e.target.value)}
-                  >
-                    <MenuItem value="relevance">Relevance</MenuItem>
-                    <MenuItem value="name">Name (A–Z)</MenuItem>
-                    <MenuItem value="category">Category (A–Z)</MenuItem>
-                  </Select>
+                  <div className={styles.sortWrap}>
+                    <Select
+                      size="small"
+                      value={sort}
+                      onChange={(e) => setSort(e.target.value)}
+                    >
+                      <MenuItem value="relevance">Relevance</MenuItem>
+                      <MenuItem value="name">Name (A–Z)</MenuItem>
+                      <MenuItem value="category">Category (A–Z)</MenuItem>
+                    </Select>
+                  </div>
                 </div>
-              </div>
-
 
                 {/* Divider */}
                 <div className={styles.headerDivider} />
@@ -119,10 +121,7 @@ export default function Shop() {
                 onChange={(id) => setCategory(mapIdToFilter(id))}
               />
 
-              {/* ===== Product Grid =====
-                 - auto-fills columns with min card width ~240px
-                 - stretches up to 1fr for wide monitors
-              */}
+              {/* ===== Product Grid ===== */}
               <Box
                 sx={{
                   mt: 1,
@@ -188,7 +187,7 @@ export default function Shop() {
             anchor="right"
             open={cartOpen}
             onClose={() => setCartOpen(false)}
-            PaperProps={{ sx: { width: { xs: "100%", sm: 420 } } }} // full on phones, panel on tablets
+            PaperProps={{ sx: { width: { xs: "100%", sm: 420 } } }}
           >
             <Box sx={{ p: 2 }}>
               <CartSidebar

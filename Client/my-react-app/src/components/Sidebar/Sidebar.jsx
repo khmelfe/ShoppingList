@@ -7,7 +7,7 @@ import styles from "./sidebar.module.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 import InfoIcon from "@mui/icons-material/Info";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { useEffect } from "react";
+
 
 export default function Sidebar() {
 

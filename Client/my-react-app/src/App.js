@@ -6,13 +6,19 @@ import Login from "./features/auth/pages/Login/Login";
 import SignUp from "./features/auth/pages/SignUp/SignUp";
 import ForgotPassword from "./features/auth/pages/ForgotPassword/ForgotPassword";
 
-// Dashboard (real page you already have)
+// Dashboard pages
 import Dashboard from "./features/dashboard/pages/Dashboard/Dashboard";
 import Products from "./features/dashboard/pages/Products/Products";
 import Orders from "./features/dashboard/pages/MyOrders/Orders";
 import Shop from "./features/dashboard/pages/Shop/Shop";
+import Favorites from "./features/dashboard/pages/Favorites/Favorites";
+// import Account from "./features/dashboard/pages/Account/Account";
 
-// Layout that renders the fixed Sidebar + <Outlet />
+// // Public info pages (OUTSIDE dashboard)
+// import About from "./features/misc/About";
+// import Contact from "./features/misc/Contact";
+
+// Layout for dashboard (sidebar + <Outlet />)
 import AppLayout from "./layouts/AppLayout";
 
 import "./styles/global.css";
@@ -27,34 +33,46 @@ export default function App() {
         <Route path="/register" element={<SignUp />} />
         <Route path="/reset" element={<ForgotPassword />} />
 
-        {/* App routes inside the layout (sidebar on the left, content on the right) */}
-        <Route element={<AppLayout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+        {/* Public info pages (outside dashboard layout)
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} /> */}
 
-          {/* Sidebar-linked routes (placeholders for now) */}
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/compare" element={<div style={box}>Compare Prices</div>} />
-          <Route path="/favorites" element={<div style={box}>Favorites</div>} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/account" element={<div style={box}>My Account</div>} />
+        {/* Dashboard routes (all pages inside /dashboard/*) */}
+        <Route path="/dashboard" element={<AppLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="compare" element={<Placeholder>Compare Prices</Placeholder>} />
+          <Route path="favorites" element={<Favorites />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="products" element={<Products />} />
+          {/* <Route path="account" element={<Account />} /> */}
+          {/* fallback inside dashboard */}
+          <Route path="*" element={<Navigate to="." replace />} />
         </Route>
 
-        {/* Catch-all: send unknown routes to dashboard if logged-in layout is mounted, else to login */}
+        {/* fallback for any unknown path */}
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
-// simple placeholder styling so the areas look like cards
-const box = {
-  background: "#fff",
-  borderRadius: 12,
-  padding: 20,
-  minHeight: 300,
-  display: "grid",
-  placeItems: "center",
-  fontSize: 22,
-  fontWeight: 700,
-};
+// simple placeholder styling
+function Placeholder({ children }) {
+  return (
+    <div
+      style={{
+        background: "#fff",
+        borderRadius: 12,
+        padding: 20,
+        minHeight: 300,
+        display: "grid",
+        placeItems: "center",
+        fontSize: 22,
+        fontWeight: 700,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
