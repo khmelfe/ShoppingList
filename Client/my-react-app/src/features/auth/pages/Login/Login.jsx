@@ -57,7 +57,7 @@ export default function Login() {
       });
       console.log(res)
       if (!res.ok) throw new Error("Login failed");
-      window.location.href = "/";
+      window.location.href = "/Dashboard";
     } catch (e) {
       setErr({ api: e.message });
     } finally {

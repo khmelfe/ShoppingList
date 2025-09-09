@@ -1,14 +1,25 @@
-import { createContext, useContext, useEffect, useState } from "react";
-
+import { createContext, useContext, useEffect, useState,useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 const AuthContext = createContext(null);
 
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);        // e.g. { id, email }
-  const [loading, setLoading] = useState(true);  // true until first /auth completes
-  const API = "http://localhost:4000";           
+  const [user, setUser] = useState(null);       
+  const [loading, setLoading] = useState(true);  //
+  const [redirectPath, setRedirectPath] = useState(null);
 
-  // Check session on first mount (runs on refresh)
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  //need to fix API in production.
+  const API = "http://localhost:4000";         
+  useEffect(() => {
+    if (!user && !loading) {
+      setRedirectPath(location.pathname);
+    }
+  }, [user, loading, location]);
+  
+
   useEffect(() => {
     let cancelled = false;
 
@@ -16,12 +27,13 @@ export function AuthProvider({ children }) {
       try {
         const res = await fetch(`${API}/auth`, {
           method: "GET",
-          credentials: "include", // send cookie
+          credentials: "include", 
         });
 
         if (!res.ok) {
           if (!cancelled) setUser(null);
-          return;
+          
+          return ;
         }
 
         const json = await res.json(); // { login: boolean, data?: decoded }
@@ -50,7 +62,7 @@ export function AuthProvider({ children }) {
     const res = await fetch(`${API}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      credentials: "include",             // important so cookie is saved
+      credentials: "include",             
       body: JSON.stringify({ email, password }),
     });
     if (!res.ok) throw new Error("Invalid credentials");
@@ -62,6 +74,8 @@ export function AuthProvider({ children }) {
     if (json.login && json.data) {
       const { id, email: em, ...rest } = json.data;
       setUser({ id, email: em, ...rest });
+      navigate(redirectPath || "/dashboard", { replace: true });
+      setRedirectPath(null); // clear it
     } else {
       setUser(null);
     }
@@ -73,13 +87,18 @@ export function AuthProvider({ children }) {
       credentials: "include",
     });
     setUser(null);
+     window.location.href = "/login";
   };
 
-  const value = useMemo(() => ({ user, setUser, loading, login, logout }), [user, loading]);
-
+  const value = useMemo(
+    () => ({ user, setUser, loading, login, logout, redirectPath }),
+    [user, loading, redirectPath]
+  );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
-  return useContext(AuthContext);
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used within <AuthProvider>");
+  return ctx;
 }

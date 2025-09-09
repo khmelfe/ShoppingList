@@ -108,7 +108,7 @@ app.post("/login", (req,res)=>{
     httpOnly: true,
     secure: false,       // true in production with HTTPS
     sameSite: "lax",     // 'strict' for tighter CSRF, 'none' (+ secure:true) for cross-site
-    maxAge: 60 * 60 * 1000, // 1h in ms, match expiresIn
+    maxAge: process.env.jwt_expires_in, // 1h in ms, match expiresIn
     path: "/",           // cookie is sent to all routes
   });
      res.status(200).json({ success: true,data: {token:token
@@ -127,7 +127,9 @@ app.get("/auth", (req, res) => {
   const cookieToken = req.cookies?.token;                    // httpOnly cookie
   const bodyToken = req.body?.token;                         
   const token = cookieToken || (header && header.split(" ")[1]) || bodyToken;
-  if (!token) return res.status(401).json({ login: false, error: "No token" });
+  if (!token) {
+        console.log("Token is Dead");
+    return res.status(401).json({ login: false, error: "No token" });}
   try {
         
 
@@ -141,7 +143,6 @@ app.get("/auth", (req, res) => {
 
 // POST /logout
 app.post("/logout", (req, res) => {
-  console.log("logu")
   res.clearCookie("token", {
     httpOnly: true,
     secure: false,    // true in production with HTTPS
