@@ -26,8 +26,10 @@ import "./styles/global.css";
 //Checks if there is Logged User before every Critical Route.
 import { AuthProvider, useAuth } from "./features/auth/components/AuthProvider";
 
+var count = 0;
 function RequireAuth() {
   const { user, loading } = useAuth();
+ 
   if (loading) return null; // or spinner while checking
   return user ? <Outlet /> : <Navigate to="/login" replace />;
 }

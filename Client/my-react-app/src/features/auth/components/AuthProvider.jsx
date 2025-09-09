@@ -7,7 +7,8 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);       
   const [loading, setLoading] = useState(true);  //
   const [redirectPath, setRedirectPath] = useState(null);
-
+  //Because of ReactStrict there is a problem that each useeffect is send twice
+  var flag = 1;
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ export function AuthProvider({ children }) {
   
 
   useEffect(() => {
+    
     let cancelled = false;
 
     async function hydrate() {
@@ -32,8 +34,11 @@ export function AuthProvider({ children }) {
 
         if (!res.ok) {
           if (!cancelled) setUser(null);
-          
-          return ;
+          if(flag == 1){
+              alert("User Not Found Please Login Again");
+              flag++;
+          }
+          return  ;
         }
 
         const json = await res.json(); // { login: boolean, data?: decoded }
@@ -50,12 +55,14 @@ export function AuthProvider({ children }) {
         if (!cancelled) setUser(null);
       } finally {
         if (!cancelled) setLoading(false);
+        
       }
     }
-
     hydrate();
     return () => { cancelled = true; };
+
   }, [API]);
+  
 
   // Call backend to set/clear cookie
   const login = async (email, password) => {
