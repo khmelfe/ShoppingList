@@ -1,33 +1,10 @@
+/* Page layout only */
 .page { padding: clamp(12px, 2vw, 20px); }
-.header { margin-bottom: 8px; }
-.title { font-weight: 800; margin-bottom: 2px; }
 
-/* —— Row 1: centered add-new card —— */
-.newRow {
-  display: grid;
-  place-items: center;
-  margin: 6px 0 18px;
-}
-.addCardFull {
-  width: clamp(280px, 42vw, 520px); /* centered, single line */
-}
+/* Row 1: centered add button */
+.newRow { display: grid; place-items: center; margin: 6px 0 18px; }
 
-/* New Favorite card styling */
-.card {
-  border: 1.5px dashed rgba(0,0,0,0.18);
-  background: linear-gradient(180deg, #ffffff, #fbfdff);
-  border-radius: 16px;
-  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
-}
-.card:hover { border-color: rgba(0,0,0,0.28); box-shadow: 0 6px 18px rgba(0,0,0,.08); transform: translateY(-2px); }
-.addCardContent {
-  min-height: clamp(160px, 22vw, 220px);
-  padding: clamp(14px, 2vw, 18px);
-  display: grid; place-items: center; text-align: center; gap: 6px;
-}
-.addIcon { font-size: clamp(36px, 5vw, 44px); opacity: .9; }
-
-/* —— Saved favorites grid: 1→2→3→4→5 —— */
+/* Saved favorites grid */
 .grid5 {
   display: grid;
   gap: 16px;
@@ -38,58 +15,7 @@
 @media (min-width: 1200px) { .grid5 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (min-width: 1536px) { .grid5 { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 
-/* Vertical favorite card */
-.vCard {
-  border: 1px solid rgba(0,0,0,0.1);
-  background: #fff;
-  border-radius: 16px;
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  display: flex; flex-direction: column; min-height: 340px;
-}
-.vCard:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.12); border-color: rgba(0,0,0,0.16); }
-
-.vHeader :global(.MuiCardHeader-title) { font-weight: 800; }
-.cardTitle { line-height: 1.1; }
-
-.vContent { display: flex; flex-direction: column; gap: 8px; }
-
-/* Product list */
-.productList {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: 1fr;
-  gap: 8px; max-height: 200px; overflow: auto;
-}
-.productRow {
-  display: grid;
-  grid-template-columns: 40px 1fr auto;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 8px;
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 10px;
-  background: #f9fafb;
-}
-.productThumb {
-  width: 36px; height: 36px; border-radius: 8px;
-  background: #f5f7fa; border: 1px solid rgba(0,0,0,0.06); object-fit: contain;
-}
-.productName { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.qty {
-  font-size: 12px; font-weight: 600; color: #4b5563;
-  padding: 2px 6px; border-radius: 6px; background: #eef2f7; border: 1px solid rgba(0,0,0,0.06);
-}
-
-.divider { margin: 8px 0; }
-.itemsLine { color: #374151; }
-
-/* Small note when no favorites */
-.noFavorites {
-  text-align: center;
-  margin-top: 6px;
-  opacity: .8;
-}
-
-/* Empty state (kept for reuse if needed) */
+/* Empty state */
 .emptyWrap {
   height: clamp(220px, 36vw, 320px);
   border-radius: 16px;
@@ -99,4 +25,3 @@
 }
 .emptyIcon { font-size: clamp(36px, 6vw, 48px); color: #ff6b6b; opacity: .9; }
 .emptyTitle { font-weight: 800; }
-.ctaChip { cursor: pointer; }
