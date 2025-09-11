@@ -1,5 +1,5 @@
 // src/App.js
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate,Outlet } from "react-router-dom";
 
 // Auth pages
 import Login from "./features/auth/pages/Login/Login";
@@ -23,9 +23,25 @@ import AppLayout from "./layouts/AppLayout";
 
 import "./styles/global.css";
 
+//Checks if there is Logged User before every Critical Route.
+import { AuthProvider, useAuth } from "./features/auth/components/AuthProvider";
+
+var count = 0;
+function RequireAuth() {
+  const { user, loading } = useAuth();
+ 
+  if (loading) return null; // or spinner while checking
+  return user ? <Outlet /> : <Navigate to="/login" replace />;
+}
+
+
+
+
 export default function App() {
   return (
     <BrowserRouter>
+       <AuthProvider>
+
       <Routes>
         {/* Auth routes */}
         <Route path="/" element={<Navigate to="/login" replace />} />
@@ -38,6 +54,8 @@ export default function App() {
         <Route path="/contact" element={<Contact />} /> */}
 
         {/* Dashboard routes (all pages inside /dashboard/*) */}
+         <Route element={<RequireAuth />}>
+
         <Route path="/dashboard" element={<AppLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="shop" element={<Shop />} />
@@ -49,10 +67,13 @@ export default function App() {
           {/* fallback inside dashboard */}
           <Route path="*" element={<Navigate to="." replace />} />
         </Route>
+        </Route>
 
         {/* fallback for any unknown path */}
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
+      </AuthProvider>
+
     </BrowserRouter>
   );
 }

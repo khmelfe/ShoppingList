@@ -1,0 +1,10 @@
+{
+  "ItemCode": "9322969000046",
+  "Itemname": "פריכיות תירס עם שומשום 150 גר`",
+  "ManufactorName": "דנשר (1963) בעמ",
+  "ManufactorCountry": "none",
+  "ManufactorItemDescription": "none",
+  "Unitqty": "יח`",
+  "QtyInPackage": "1",
+  "ItemPrice": "17.90"
+}

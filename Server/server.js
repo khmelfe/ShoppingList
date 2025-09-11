@@ -128,7 +128,6 @@ app.get("/auth", (req, res) => {
   const bodyToken = req.body?.token;                         
   const token = cookieToken || (header && header.split(" ")[1]) || bodyToken;
   if (!token) {
-        console.log("Token is Dead");
     return res.status(401).json({ login: false, error: "No token" });}
   try {
         
